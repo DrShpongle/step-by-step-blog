@@ -1,8 +1,7 @@
-import type {NextPage} from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 
-const Home: NextPage = () => {
+const PageLayout = () => {
   return (
     <div className="container">
       <Head>
@@ -32,4 +31,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default PageLayout
