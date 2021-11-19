@@ -1,5 +1,4 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
-console.log('fontSize:', defaultTheme.fontSize)
 
 const bodyFontFamily = '"Poppins", sans-serif'
 const headingFontFamily = '"Ribeye Marrow", cursive'
