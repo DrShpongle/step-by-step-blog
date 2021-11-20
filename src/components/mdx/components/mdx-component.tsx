@@ -6,9 +6,7 @@ type Props = {
 
 const MdxComponent: React.FC<Props> = ({children}: Props) => {
   return (
-    <p>
-      <div className="p-8 mt-6 text-white bg-blue rounded-xl">{children}</div>
-    </p>
+    <div className="p-8 mt-6 text-white bg-blue rounded-xl">{children}</div>
   )
 }
 

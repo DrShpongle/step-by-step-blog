@@ -1,10 +1,9 @@
-import type {NextPage, GetStaticProps} from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
-import {allPosts} from 'utils/get-all-posts'
+import {fetchPostSlugs} from 'utils/fetchPostSlugs'
 import PageLayout from 'components/layouts/page-layout'
 
-const Blog: React.FC = () => {
+const Blog: React.FC<any> = ({posts}) => {
   return (
     <PageLayout>
       <Head>
@@ -15,22 +14,22 @@ const Blog: React.FC = () => {
       <div className="container">
         <h2>Posts:</h2>
         <ul className="mt-8 space-y-6">
-          {allPosts.map((post: any, index: number) => {
+          {posts.map((post: any, index: number) => {
             return (
               <div
                 key={index}
                 className="flex flex-col p-4 space-y-4 bg-blue-dark"
               >
                 <h3>
-                  <Link href={post.href}>
-                    <a className="text-white">{post.title}</a>
+                  <Link href={`/blog/${post.slug}`}>
+                    <a className="text-white">{post.meta.title}</a>
                   </Link>
                 </h3>
-                <p>{post.excerpt}</p>
-                <p>{post.date}</p>
+                <p>{post.meta.excerpt}</p>
+                <p>{post.meta.date}</p>
                 <div className="flex space-x-2">
                   <div>Tags:</div>
-                  <div className="flex">{post.tags.join(', ')}</div>
+                  <div className="flex">{post.meta.tags.join(', ')}</div>
                 </div>
               </div>
             )
@@ -42,3 +41,19 @@ const Blog: React.FC = () => {
 }
 
 export default Blog
+
+export async function getStaticProps() {
+  const slugs = await fetchPostSlugs()
+  const posts = slugs.map((slug) => {
+    const meta = require(`./blog/${slug}/index.mdx`).meta
+    return {
+      slug,
+      meta,
+    }
+  })
+  return {
+    props: {
+      posts,
+    },
+  }
+}

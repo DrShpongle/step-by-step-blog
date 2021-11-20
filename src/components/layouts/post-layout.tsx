@@ -7,16 +7,14 @@ type metaProps = {
   title?: string
   excerpt?: string
   date?: string
+  tags?: string[]
 }
 
 const PostLayout: React.FC<{meta: metaProps; children: React.ReactNode}> = ({
   meta,
   children,
 }) => {
-  const {title, excerpt, date} = meta
-  console.log('title:', title)
-  console.log('excerpt:', excerpt)
-  console.log('date:', date)
+  const {title, excerpt, date, tags} = meta
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -26,6 +24,12 @@ const PostLayout: React.FC<{meta: metaProps; children: React.ReactNode}> = ({
             {title && <h2>{title}</h2>}
             {excerpt && <div>{excerpt}</div>}
             {date && <div>{date}</div>}
+            {tags && (
+              <div className="flex space-x-2">
+                <div>Tags:</div>
+                <div className="flex">{tags.join(', ')}</div>
+              </div>
+            )}
           </div>
           <div className="w-full prose max-w-none">{children}</div>
         </div>
