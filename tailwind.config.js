@@ -5,7 +5,7 @@ const headingFontFamily = '"Ribeye Marrow", cursive'
 
 const customColors = {
   black: '#001219',
-  white: '#001219',
+  white: '#ffffff',
   blue: {
     DEFAULT: '#0a9396',
     light: '#94d2bd',
