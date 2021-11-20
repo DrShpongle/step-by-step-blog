@@ -10,6 +10,10 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    colors: {
+      ...defaultTheme.colors,
+      terracota: '#E74802',
+    },
     fontFamily: {
       body: bodyFontFamily,
       heading: headingFontFamily,
