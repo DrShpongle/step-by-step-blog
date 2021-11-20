@@ -1,7 +1,25 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
+// const defaultTheme = require('tailwindcss/defaultTheme')
 
 const bodyFontFamily = '"Poppins", sans-serif'
 const headingFontFamily = '"Ribeye Marrow", cursive'
+
+const customColors = {
+  black: '#001219',
+  white: '#001219',
+  blue: {
+    DEFAULT: '#0a9396',
+    light: '#94d2bd',
+    dark: '#005f73',
+  },
+  champagne: '#e9d8a6',
+  gambodge: 'ee9b00',
+  orange: '#ca6702',
+  red: {
+    DEFAULT: '#ae2012',
+    light: '#bb3e03',
+    dark: '#9b2226',
+  },
+}
 
 module.exports = {
   purge: [
@@ -11,8 +29,7 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     colors: {
-      ...defaultTheme.colors,
-      terracota: '#E74802',
+      ...customColors,
     },
     fontFamily: {
       body: bodyFontFamily,
@@ -26,19 +43,45 @@ module.exports = {
       },
     },
     extend: {
-      typography: {
+      typography: (theme) => ({
         DEFAULT: {
           css: {
-            color: '#ff0000',
+            color: customColors.black,
             a: {
-              color: '#3182ce',
+              color: customColors.orange,
+              textDecoration: 'none',
+              transition: 'all 100ms',
               '&:hover': {
-                color: '#2c5282',
+                color: customColors.red,
+                textDecoration: 'underline',
               },
+            },
+            'h1, h2, h3, h4, h5, h6': {
+              fontWeight: theme('fontWeight.semibold'),
+              fontFamily: headingFontFamily,
+              lineHeight: theme('lineHeight.normal'),
+            },
+            h1: {
+              fontSize: theme('fontSize.4xl'),
+            },
+            h2: {
+              fontSize: theme('fontSize.3xl'),
+            },
+            h3: {
+              fontSize: theme('fontSize.2xl'),
+            },
+            h4: {
+              fontSize: theme('fontSize.xl'),
+            },
+            h5: {
+              fontSize: theme('fontSize.base'),
+            },
+            h6: {
+              fontSize: theme('fontSize.xs'),
             },
           },
         },
-      },
+      }),
     },
   },
   variants: {
