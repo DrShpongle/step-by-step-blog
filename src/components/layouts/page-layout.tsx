@@ -1,7 +1,7 @@
 import * as React from 'react'
 
-import Header from '../app/header'
-import Footer from '../app/footer'
+import Header from 'components/app/header'
+import Footer from 'components/app/footer'
 
 const PageLayout: React.FC<{children: React.ReactNode}> = ({children}) => {
   return (
