@@ -2,4 +2,4 @@ import fs from 'fs'
 import path from 'path'
 
 export const fetchPostSlugs = () =>
-  fs.promises.readdir(path.join(process.cwd(), '/src/pages/blog'))
+  fs.promises.readdir(path.join(process.cwd(), '/src/pages/blog/posts'))

@@ -21,7 +21,7 @@ const Blog: React.FC<any> = ({posts}) => {
                 className="flex flex-col p-4 space-y-4 bg-blue-dark"
               >
                 <h3>
-                  <Link href={`/blog/${post.slug}`}>
+                  <Link href={`/blog/posts/${post.slug}`}>
                     <a className="text-white">{post.meta.title}</a>
                   </Link>
                 </h3>
@@ -45,7 +45,7 @@ export default Blog
 export async function getStaticProps() {
   const slugs = await fetchPostSlugs()
   const posts = slugs.map((slug) => {
-    const meta = require(`./blog/${slug}/index.mdx`).meta
+    const meta = require(`./posts/${slug}/index.mdx`).meta
     return {
       slug,
       meta,
