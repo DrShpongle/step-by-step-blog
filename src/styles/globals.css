@@ -9,7 +9,7 @@
   h4,
   h5,
   h6 {
-    @apply font-semibold;
+    @apply font-semibold font-heading;
   }
   h1 {
     @apply text-4xl;
