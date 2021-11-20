@@ -1,3 +1,3 @@
-import Mark from './components/mark'
+import MdxComponent from './components/mdx-component'
 
-export {Mark}
+export {MdxComponent}

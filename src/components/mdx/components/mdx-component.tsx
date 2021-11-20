@@ -4,15 +4,15 @@ type Props = {
   children: React.ReactNode
 }
 
-const Mark: React.FC<Props> = ({children}: Props) => {
+const MdxComponent: React.FC<Props> = ({children}: Props) => {
   return (
-    <>
-      <h2>Mark Component</h2>
+    <p>
+      <h2>It's an MdxComponent</h2>
       <div className="p-8 mt-6 text-white bg-gray-600 rounded-xl">
         {children}
       </div>
-    </>
+    </p>
   )
 }
 
-export default Mark
+export default MdxComponent
