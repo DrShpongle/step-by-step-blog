@@ -1,3 +1,5 @@
+const POSTS_PATH = '../pages/blog/'
+
 const importAll = (r: any) => {
   return r
     .keys()
@@ -10,6 +12,4 @@ const importAll = (r: any) => {
     })
 }
 
-export const allPosts = importAll(
-  require.context('../pages/blog/', true, /\.mdx$/),
-)
+export const allPosts = importAll(require.context(POSTS_PATH, true, /\.mdx$/))
