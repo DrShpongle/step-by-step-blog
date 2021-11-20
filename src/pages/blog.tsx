@@ -5,7 +5,6 @@ import {allPosts} from 'utils/get-all-posts'
 import PageLayout from 'components/layouts/page-layout'
 
 const Blog: React.FC = () => {
-  console.log('allPosts:', allPosts)
   return (
     <PageLayout>
       <Head>
@@ -18,14 +17,21 @@ const Blog: React.FC = () => {
         <ul className="mt-8 space-y-6">
           {allPosts.map((post: any, index: number) => {
             return (
-              <div key={index} className="flex flex-col p-4 bg-blue-dark">
-                <Link href={post.href}>
-                  <a className="space-y-4 text-white">
-                    <h3>{post.title}</h3>
-                    <p>{post.excerpt}</p>
-                    <p>{post.date}</p>
-                  </a>
-                </Link>
+              <div
+                key={index}
+                className="flex flex-col p-4 space-y-4 bg-blue-dark"
+              >
+                <h3>
+                  <Link href={post.href}>
+                    <a className="text-white">{post.title}</a>
+                  </Link>
+                </h3>
+                <p>{post.excerpt}</p>
+                <p>{post.date}</p>
+                <div className="flex space-x-2">
+                  <div>Tags:</div>
+                  <div className="flex">{post.tags.join(', ')}</div>
+                </div>
               </div>
             )
           })}
