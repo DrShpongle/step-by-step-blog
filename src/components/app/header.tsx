@@ -1,6 +1,7 @@
 import {useRouter} from 'next/router'
 import Link from 'next/link'
 import classNames from 'classnames'
+import Image from 'next/image'
 
 const navLinks = [
   {title: 'Home', path: '/'},
@@ -14,7 +15,9 @@ const Header = () => {
       <div className="container">
         <div className="flex items-center justify-between">
           <Link href="/" passHref>
-            <a>Header</a>
+            <a className="relative block w-12 h-12">
+              <Image src="/logo.svg" layout="fill" />
+            </a>
           </Link>
           <ul className="flex flex-shrink-0 space-x-8 flex-nowrap font-heading">
             {navLinks.map((item, index) => {
@@ -23,9 +26,9 @@ const Header = () => {
                   <Link href={item.path} passHref>
                     <a
                       className={classNames(
-                        'hover:text-terracota',
+                        'hover:text-orange duration-100',
                         router.pathname === item.path
-                          ? 'text-terracota border-b border-terracota'
+                          ? 'text-orange border-b border-orange'
                           : '',
                       )}
                     >
@@ -33,17 +36,6 @@ const Header = () => {
                     </a>
                   </Link>
                 </li>
-                // <Link key={index} href={item.path}>
-                //   <a
-                //     className={`cursor-pointer ${
-                //       router.pathname === item.path
-                //         ? 'text-blue-500'
-                //         : 'hover:bg-gray-900 hover:text-blue-500'
-                //     }`}
-                //   >
-                //     {item.title}
-                //   </a>
-                // </Link>
               )
             })}
           </ul>
