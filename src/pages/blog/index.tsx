@@ -1,9 +1,14 @@
 import Head from 'next/head'
-import Link from 'next/link'
 import {fetchPostSlugs} from 'utils/fetchPostSlugs'
 import PageLayout from 'components/layouts/page-layout'
+import {PostCard} from 'components/blog/'
+import {Post} from 'types/blog/'
 
-const Blog: React.FC<any> = ({posts}) => {
+type BlogPageProps = {
+  posts: Post[]
+}
+
+const Blog: React.FC<BlogPageProps> = ({posts}) => {
   return (
     <PageLayout>
       <Head>
@@ -14,25 +19,8 @@ const Blog: React.FC<any> = ({posts}) => {
       <div className="container">
         <h2>Posts:</h2>
         <ul className="mt-8 space-y-6">
-          {posts.map((post: any, index: number) => {
-            return (
-              <div
-                key={index}
-                className="flex flex-col p-4 space-y-4 bg-viridian-blue-dark"
-              >
-                <h3>
-                  <Link href={`/blog/posts/${post.slug}`}>
-                    <a className="text-white">{post.meta.title}</a>
-                  </Link>
-                </h3>
-                <p>{post.meta.excerpt}</p>
-                <p>{post.meta.date}</p>
-                <div className="flex space-x-2">
-                  <div>Tags:</div>
-                  <div className="flex">{post.meta.tags.join(', ')}</div>
-                </div>
-              </div>
-            )
+          {posts.map((post) => {
+            return <PostCard post={post} key={post.slug} />
           })}
         </ul>
       </div>

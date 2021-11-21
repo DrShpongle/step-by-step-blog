@@ -42,7 +42,7 @@ const PostLayout: React.FC<pageProps> = ({meta, children}) => {
               </div>
             )}
             {(date || tags) && (
-              <div className="flex flex-col justify-between w-full max-w-3xl mt-8 space-y-4 md:mt-10 md:flex-row xl:max-w-4xl">
+              <div className="flex flex-col justify-between w-full max-w-3xl mt-8 space-y-4 md:mt-10 md:flex-row xl:max-w-4xl md:space-y-0">
                 {tags && (
                   <div className="flex space-x-2">
                     <span className="font-semibold">Tags:</span>
