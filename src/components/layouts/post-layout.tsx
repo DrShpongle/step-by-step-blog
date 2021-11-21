@@ -24,7 +24,11 @@ const PostLayout: React.FC<pageProps> = ({meta, children}) => {
               {title && (
                 <h2 className="mx-auto text-center lg:max-w-3xl">{title}</h2>
               )}
-              {(date || tags) && <PostTagsAndDate tags={tags} date={date} />}
+              {(date || tags) && (
+                <div className="mt-8">
+                  <PostTagsAndDate tags={tags} date={date} />
+                </div>
+              )}
               {postImage && (
                 <div className="w-full mt-8 md:mt-10 lg:mt-12 xl:mt-16">
                   <PostImage source={postImage} />
