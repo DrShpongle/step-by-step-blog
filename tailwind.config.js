@@ -1,20 +1,20 @@
-// const defaultTheme = require('tailwindcss/defaultTheme')
+const defaultTheme = require('tailwindcss/defaultTheme')
 
 const bodyFontFamily = '"Poppins", sans-serif'
 const headingFontFamily = '"Ribeye Marrow", cursive'
 
+// https://coolors.co/001219-005f73-0a9396-94d2bd-e9d8a6-ee9b00-ca6702-bb3e03-ae2012-9b2226
 const customColors = {
   black: '#001219',
-  white: '#ffffff',
-  blue: {
+  'viridian-blue': {
     DEFAULT: '#0a9396',
     light: '#94d2bd',
     dark: '#005f73',
   },
   champagne: '#e9d8a6',
   gambodge: 'ee9b00',
-  orange: '#ca6702',
-  red: {
+  ['orange-aloy']: '#ca6702',
+  rufous: {
     DEFAULT: '#ae2012',
     light: '#bb3e03',
     dark: '#9b2226',
@@ -30,6 +30,7 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     colors: {
+      ...defaultTheme.colors,
       ...customColors,
     },
     fontFamily: {

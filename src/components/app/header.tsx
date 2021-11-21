@@ -27,9 +27,9 @@ const Header = () => {
                   <Link href={item.path} passHref>
                     <a
                       className={classNames(
-                        'hover:text-orange duration-100',
+                        'hover:text-orange-aloy duration-100',
                         router.pathname === item.path
-                          ? 'text-orange border-b border-orange'
+                          ? 'text-orange-aloy border-b border-orange-aloy'
                           : '',
                       )}
                     >
