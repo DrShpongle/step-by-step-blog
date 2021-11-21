@@ -12,7 +12,7 @@ const customColors = {
     dark: '#005f73',
   },
   champagne: '#e9d8a6',
-  gambodge: 'ee9b00',
+  gambodge: '#ee9b00',
   ['orange-aloy']: '#ca6702',
   rufous: {
     DEFAULT: '#ae2012',
