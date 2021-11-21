@@ -1,17 +1,21 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
+const withPlugins = require(`next-compose-plugins`)
+
+const nextConfig = {
   reactStrictMode: true,
-  // Prefer loading of ES Modules over CommonJS
-  experimental: {esmExternals: true},
-  // Support MDX files as pages:
+  experimental: {esmExternals: false},
+  images: {
+    domains: ['images.unsplash.com'],
+  },
   pageExtensions: ['md', 'mdx', 'tsx', 'ts', 'jsx', 'js'],
-  // Support loading `.md`, `.mdx`:
-  webpack(config, options) {
+  webpack(config, {isServer, defaultLoaders}) {
+    if (!isServer) {
+      config.resolve.fallback.fs = false
+    }
     config.module.rules.push({
       test: /\.mdx?$/,
       use: [
-        // The default `babel-loader` used by Next:
-        options.defaultLoaders.babel,
+        defaultLoaders.babel,
         {
           loader: '@mdx-js/loader',
           /** @type {import('@mdx-js/loader').Options} */
@@ -21,7 +25,8 @@ module.exports = {
         },
       ],
     })
-
     return config
   },
 }
+
+module.exports = withPlugins([], nextConfig)

@@ -22,6 +22,7 @@ const customColors = {
 }
 
 module.exports = {
+  mode: 'jit',
   purge: [
     './src/pages/**/*.{js,ts,jsx,tsx}',
     './src/components/**/*.{js,ts,jsx,tsx}',
@@ -40,6 +41,13 @@ module.exports = {
       padding: {
         DEFAULT: '1.25rem',
         sm: '2.5rem',
+      },
+      screens: {
+        DEFAULT: '100%',
+        sm: '100%',
+        md: '100%',
+        lg: '1024px',
+        xl: '1280px',
       },
     },
     extend: {
