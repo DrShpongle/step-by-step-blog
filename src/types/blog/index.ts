@@ -1,17 +1,19 @@
 export type PostImageSource = {
   url: string
-  description?: string
+  description: string
 }
 
 export type PostMeta = {
-  title?: string
-  excerpt?: string
-  date?: string
-  tags?: string[]
-  postImage?: PostImageSource
+  title: string
+  excerpt: string
+  // TODO:
+  // wtf??
+  date: any
+  tags: string[]
+  postImage: PostImageSource
 }
 
 export type Post = {
-  meta?: PostMeta
+  meta: PostMeta
   slug: string
 }

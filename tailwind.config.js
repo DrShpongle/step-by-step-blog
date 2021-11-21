@@ -71,13 +71,13 @@ module.exports = {
               lineHeight: theme('lineHeight.normal'),
             },
             h1: {
-              fontSize: theme('fontSize.4xl'),
+              fontSize: theme('fontSize.5xl'),
             },
             h2: {
-              fontSize: theme('fontSize.3xl'),
+              fontSize: theme('fontSize.4xl'),
             },
             h3: {
-              fontSize: theme('fontSize.2xl'),
+              fontSize: theme('fontSize.3xl'),
             },
             h4: {
               fontSize: theme('fontSize.xl'),
@@ -96,5 +96,8 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/line-clamp'),
+  ],
 }

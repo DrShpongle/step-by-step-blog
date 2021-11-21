@@ -1,6 +1,7 @@
 import * as React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import {PostTagsAndDate} from 'components/blog'
 import {Post} from 'types/blog/'
 
 type PostCardProps = {
@@ -8,39 +9,28 @@ type PostCardProps = {
 }
 
 export const PostCard: React.FC<PostCardProps> = ({post}) => {
-  const {meta = {}, slug} = post
+  const {meta, slug} = post
   const {title, excerpt, date, tags, postImage} = meta
   return (
-    <div className="flex flex-col p-4 border border-gray-400 md:flex-row">
+    <div className="flex flex-col p-4 space-x-16 md:flex-row rounded-xl bg-viridian-blue-light">
       {postImage?.url && (
-        <div className="relative w-64 h-48 overflow-hidden rounded-xl">
-          <Image src={postImage.url} layout="fill" objectFit="cover" />
+        <div className="relative flex-shrink-0 w-64 h-48 overflow-hidden rounded-xl">
+          <Image
+            src={postImage.url}
+            layout="fill"
+            quality={75}
+            objectFit="cover"
+          />
         </div>
       )}
       <div>
-        <h3>
+        <h3 className="text-white line-clamp-2">
           <Link href={`/blog/posts/${slug}`}>
-            <a className="text-white">{title}</a>
+            <a className="text-inherit">{title}</a>
           </Link>
         </h3>
         <p>{excerpt}</p>
-        <p>{date}</p>
-        {(date || tags) && (
-          <div className="flex flex-col justify-between w-full max-w-3xl mt-8 space-y-4 md:mt-10 md:flex-row xl:max-w-4xl md:space-y-0">
-            {tags && (
-              <div className="flex space-x-2">
-                <span className="font-semibold">Tags:</span>
-                <span className="flex">{tags.join(', ')}</span>
-              </div>
-            )}
-            {date && (
-              <div className="flex items-center space-x-2">
-                <span className="font-semibold">date:</span>
-                <span>{date}</span>
-              </div>
-            )}
-          </div>
-        )}
+        <PostTagsAndDate tags={tags} date={date} />
       </div>
     </div>
   )

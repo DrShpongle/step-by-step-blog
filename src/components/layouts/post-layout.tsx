@@ -4,18 +4,11 @@ import {PostImageSource} from 'types/blog/'
 
 import Header from 'components/app/header'
 import Footer from 'components/app/footer'
-import {PostImage, PostExcerpt} from 'components/blog/'
-
-type metaProps = {
-  title?: string
-  excerpt?: string
-  date?: string
-  tags?: string[]
-  postImage?: PostImageSource
-}
+import {PostImage, PostExcerpt, PostTagsAndDate} from 'components/blog/'
+import {PostMeta} from 'types/blog/'
 
 type pageProps = {
-  meta: metaProps
+  meta: PostMeta
   children: React.ReactNode
 }
 
@@ -31,30 +24,15 @@ const PostLayout: React.FC<pageProps> = ({meta, children}) => {
             {title && (
               <h2 className="mx-auto text-center lg:max-w-3xl">{title}</h2>
             )}
+            {(date || tags) && <PostTagsAndDate tags={tags} date={date} />}
             {postImage && (
               <div className="w-full mt-8 md:mt-10 lg:mt-12 xl:mt-16">
                 <PostImage source={postImage} />
               </div>
             )}
             {excerpt && (
-              <div className="mt-8">
+              <div className="mt-16">
                 <PostExcerpt text={excerpt} />
-              </div>
-            )}
-            {(date || tags) && (
-              <div className="flex flex-col justify-between w-full max-w-3xl mt-8 space-y-4 md:mt-10 md:flex-row xl:max-w-4xl md:space-y-0">
-                {tags && (
-                  <div className="flex space-x-2">
-                    <span className="font-semibold">Tags:</span>
-                    <span className="flex">{tags.join(', ')}</span>
-                  </div>
-                )}
-                {date && (
-                  <div className="flex items-center space-x-2">
-                    <span className="font-semibold">date:</span>
-                    <span>{date}</span>
-                  </div>
-                )}
               </div>
             )}
           </div>

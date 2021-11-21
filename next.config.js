@@ -6,6 +6,7 @@ const nextConfig = {
   experimental: {esmExternals: true},
   images: {
     domains: ['images.unsplash.com'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1440],
   },
   pageExtensions: ['md', 'mdx', 'tsx', 'ts', 'jsx', 'js'],
   webpack(config, {isServer, defaultLoaders}) {

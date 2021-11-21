@@ -31,12 +31,25 @@ const Blog: React.FC<BlogPageProps> = ({posts}) => {
 export default Blog
 
 export async function getStaticProps() {
+  const defaultMetaFields = {
+    title: '',
+    excerpt: '',
+    date: '',
+    tags: [],
+    postImage: {
+      url: '',
+      description: '',
+    },
+  }
   const slugs = await fetchPostSlugs()
   const posts = slugs.map((slug) => {
     const meta = require(`./posts/${slug}/index.mdx`).meta
     return {
       slug,
-      meta,
+      meta: {
+        ...defaultMetaFields,
+        ...meta,
+      },
     }
   })
   return {
