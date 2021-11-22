@@ -10,6 +10,7 @@ const customColors = {
     DEFAULT: '#0a9396',
     light: '#94d2bd',
     dark: '#005f73',
+    darkest: '#002c36',
   },
   champagne: '#e9d8a6',
   gambodge: '#ee9b00',

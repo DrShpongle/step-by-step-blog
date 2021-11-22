@@ -32,7 +32,7 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
         </Head>
-        <body className="bg-opacity-50 text-dark dark:text-champagne font-body bg-champagne dark:bg-black">
+        <body className="bg-opacity-50 text-dark dark:text-champagne font-body bg-champagne dark:bg-viridian-blue-darkest">
           <Main />
           <NextScript />
         </body>

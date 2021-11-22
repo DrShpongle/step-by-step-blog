@@ -1,5 +1,6 @@
 import * as React from 'react'
 import {useTheme} from 'next-themes'
+import {motion} from 'framer-motion'
 
 const DarkModeToggler = () => {
   const [isMounted, setIsMounted] = React.useState<boolean>(false)
@@ -10,43 +11,55 @@ const DarkModeToggler = () => {
     setTheme(nextTheme)
   }
   return (
-    <div className="flex items-center justify-between flex-shrink-0">
-      <div
-        className="w-16 h-10 p-1 bg-gray-300 rounded-full dark:bg-gray-1000"
-        onClick={handleClick}
-        aria-label="Toggle Dark Mode"
-        role="button"
-      >
+    <div className="flex-shrink-0">
+      <div className="w-16 h-10">
         <div
-          className={`bg-white w-8 h-8 rounded-full shadow-md duration-300 ease-in-out flex items-center justify-center dark:bg-gray-800 ${
-            isMounted && (theme === 'dark' ? 'translate-x-6' : '')
-          }`}
+          className="w-full h-full p-1 bg-opacity-50 rounded-full dark:bg-opacity-50 dark:bg-champagne bg-viridian-blue-darkest"
+          onClick={handleClick}
+          aria-label="Toggle Dark Mode"
+          role="button"
         >
-          {isMounted && (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              stroke="currentColor"
-              className="w-4 h-4 text-gray-400 dark:text-gray-200"
+          {isMounted ? (
+            <motion.div
+              variants={{
+                light: {
+                  x: 0,
+                },
+                dark: {
+                  x: '24px',
+                },
+              }}
+              animate={isMounted && theme === 'dark' ? 'dark' : 'light'}
+              initial={theme === 'dark' ? 'dark' : 'light'}
+              className="flex items-center justify-center w-8 h-8 rounded-full shadow-md bg-champagne dark:bg-viridian-blue-darkest"
             >
-              {theme === 'dark' ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-                />
+              {isMounted && (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  className="w-4 h-4 text-viridian-blue-darkest dark:text-champagne"
+                >
+                  {theme === 'dark' ? (
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                    />
+                  ) : (
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                    />
+                  )}
+                </svg>
               )}
-            </svg>
-          )}
+            </motion.div>
+          ) : null}
         </div>
       </div>
     </div>
