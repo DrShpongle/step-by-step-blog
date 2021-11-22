@@ -14,9 +14,9 @@ export const PostCard: React.FC<PostCardProps> = ({post}) => {
   return (
     <div className="flex flex-col py-4 pl-4 pr-4 space-y-4 lg:pr-10 md:space-y-0 md:space-x-6 lg:space-x-10 md:flex-row rounded-xl bg-viridian-blue-dark">
       {postImage?.url && (
-        <div className="relative flex-shrink-0 w-full overflow-hidden h-52 md:w-72 rounded-xl">
+        <div className="flex-shrink-0 w-full overflow-hidden h-52 md:w-72 rounded-xl">
           <Link href={`/blog/posts/${slug}`}>
-            <a className="text-inherit">
+            <a className="relative block w-full h-full text-inherit">
               <Image
                 src={postImage.url}
                 layout="fill"
