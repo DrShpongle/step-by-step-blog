@@ -57,11 +57,11 @@ module.exports = {
           css: {
             color: customColors.black,
             a: {
-              color: customColors.orange,
+              color: customColors['orange-aloy'],
               textDecoration: 'none',
               transition: 'all 100ms',
               '&:hover': {
-                color: customColors.red,
+                color: customColors.rufous,
                 textDecoration: 'underline',
               },
             },
@@ -87,6 +87,14 @@ module.exports = {
             },
             h6: {
               fontSize: theme('fontSize.xs'),
+            },
+          },
+        },
+        dark: {
+          css: {
+            color: customColors.champagne,
+            'h1, h2, h3, h4, h5, h6': {
+              color: customColors.champagne,
             },
           },
         },

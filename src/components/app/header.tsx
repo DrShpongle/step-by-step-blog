@@ -14,7 +14,7 @@ const navLinks = [
 const Header = () => {
   const router = useRouter()
   return (
-    <header className="py-4 border-b border-gray-300 bg-viridian-blue-light dark:bg-rufous-light">
+    <header className="py-4 bg-viridian-blue-light dark:bg-viridian-blue-dark">
       <div className="container">
         <div className="flex items-center justify-between">
           <Link href="/" passHref>
@@ -33,7 +33,7 @@ const Header = () => {
                           'hover:text-orange-aloy duration-100',
                           router.pathname === item.path
                             ? ' text-orange-aloy border-b border-orange-aloy'
-                            : 'text-viridian-blue-dark',
+                            : 'text-viridian-blue-dark dark:text-champagne',
                         )}
                       >
                         {item.title}
