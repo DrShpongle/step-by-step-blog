@@ -12,16 +12,16 @@
     @apply font-semibold font-heading leading-normal;
   }
   h1 {
-    @apply text-5xl xl:text-6xl leading-tight;
+    @apply text-4xl md:text-5xl xl:text-6xl leading-tight;
   }
   h2 {
-    @apply text-5xl xl:text-6xl leading-tight;
+    @apply text-4xl md:text-5xl xl:text-6xl leading-tight;
   }
   h3 {
-    @apply text-2xl leading-normal;
+    @apply text-3xl md:text-4xl xl:text-5xl leading-normal;
   }
   h4 {
-    @apply text-xl leading-normal;
+    @apply text-2xl md:text-3xl xl:text-4xl leading-normal;
   }
   h5 {
     @apply text-base leading-normal;

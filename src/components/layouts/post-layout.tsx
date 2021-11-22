@@ -40,7 +40,7 @@ const PostLayout: React.FC<pageProps> = ({meta, children}) => {
                 </div>
               )}
             </div>
-            <div className="max-w-3xl mx-auto mt-10 prose dark:prose-dark xl:max-w-4xl md:mt-14 lg:mt-16 xl:mt-20">
+            <div className="max-w-3xl mx-auto mt-10 prose md:prose-xl dark:prose-dark xl:max-w-4xl md:mt-14 lg:mt-16 xl:mt-20">
               {children}
             </div>
             <button

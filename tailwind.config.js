@@ -70,24 +70,24 @@ module.exports = {
               fontFamily: headingFontFamily,
               lineHeight: theme('lineHeight.normal'),
             },
-            h1: {
-              fontSize: theme('fontSize.5xl'),
-            },
-            h2: {
-              fontSize: theme('fontSize.4xl'),
-            },
-            h3: {
-              fontSize: theme('fontSize.3xl'),
-            },
-            h4: {
-              fontSize: theme('fontSize.xl'),
-            },
-            h5: {
-              fontSize: theme('fontSize.base'),
-            },
-            h6: {
-              fontSize: theme('fontSize.xs'),
-            },
+            // h1: {
+            //   fontSize: theme('fontSize.5xl'),
+            // },
+            // h2: {
+            //   fontSize: theme('fontSize.4xl'),
+            // },
+            // h3: {
+            //   fontSize: theme('fontSize.3xl'),
+            // },
+            // h4: {
+            //   fontSize: theme('fontSize.xl'),
+            // },
+            // h5: {
+            //   fontSize: theme('fontSize.base'),
+            // },
+            // h6: {
+            //   fontSize: theme('fontSize.xs'),
+            // },
           },
         },
         dark: {
