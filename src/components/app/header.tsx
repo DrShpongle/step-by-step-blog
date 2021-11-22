@@ -23,7 +23,7 @@ const Header = () => {
             </a>
           </Link>
           <div className="flex items-center space-x-8">
-            <ul className="flex flex-shrink-0 space-x-8 flex-nowrap font-heading">
+            <ul className="flex flex-shrink-0 space-x-6 sm:space-x-8 flex-nowrap font-heading">
               {navLinks.map((item, index) => {
                 return (
                   <li key={index}>

@@ -35,7 +35,7 @@ const PostLayout: React.FC<pageProps> = ({meta, children}) => {
                 </div>
               )}
               {excerpt && (
-                <div className="mt-16">
+                <div className="mt-12 md:mt-16">
                   <PostExcerpt text={excerpt} />
                 </div>
               )}

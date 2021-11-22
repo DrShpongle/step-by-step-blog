@@ -9,24 +9,24 @@
   h4,
   h5,
   h6 {
-    @apply font-semibold font-heading leading-normal;
+    @apply font-semibold font-heading;
   }
   h1 {
     @apply text-4xl md:text-5xl xl:text-6xl leading-tight;
   }
   h2 {
-    @apply text-4xl md:text-5xl xl:text-6xl leading-tight;
+    @apply text-3xl md:text-4xl xl:text-5xl leading-tight;
   }
   h3 {
-    @apply text-3xl md:text-4xl xl:text-5xl leading-normal;
+    @apply text-2xl md:text-3xl xl:text-4xl leading-tight;
   }
   h4 {
-    @apply text-2xl md:text-3xl xl:text-4xl leading-normal;
+    @apply text-xl md:text-2xl xl:text-3xl leading-tight;
   }
   h5 {
-    @apply text-base leading-normal;
+    @apply text-base leading-tight;
   }
   h6 {
-    @apply text-xs leading-normal;
+    @apply text-xs leading-tight;
   }
 }
