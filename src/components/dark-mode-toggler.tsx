@@ -1,8 +1,13 @@
 import * as React from 'react'
 import {useTheme} from 'next-themes'
 import {motion} from 'framer-motion'
+import classNames from 'classnames'
 
 const DarkModeToggler = () => {
+  const [mounted, setMounted] = React.useState(false)
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
   const {theme, setTheme} = useTheme()
   const handleClick = () => {
     const nextTheme = theme === 'dark' ? 'light' : 'dark'
@@ -38,9 +43,12 @@ const DarkModeToggler = () => {
               viewBox="0 0 24 24"
               fill="currentColor"
               stroke="currentColor"
-              className="w-4 h-4 text-viridian-blue-darkest dark:text-champagne"
+              className={classNames(
+                'w-4 h-4 text-viridian-blue-darkest dark:text-champagne duration-100',
+                mounted ? 'opacity-100' : 'opacity-0',
+              )}
             >
-              {theme === 'dark' ? (
+              {mounted && theme === 'dark' ? (
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
