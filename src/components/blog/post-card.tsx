@@ -33,11 +33,12 @@ export const PostCard: React.FC<PostCardProps> = ({post}) => {
             <a className="text-inherit">{title}</a>
           </Link>
         </h3>
-        {excerpt && (
-          <div className="flex-grow">
+        <div className="flex-grow">
+          {excerpt && (
             <div className="text-champagne line-clamp-3">{excerpt}</div>
-          </div>
-        )}
+          )}
+        </div>
+
         {!isEmpty(date) && (
           <div className="flex items-center space-x-2">
             <span className="font-semibold text-viridian-blue font-heading">

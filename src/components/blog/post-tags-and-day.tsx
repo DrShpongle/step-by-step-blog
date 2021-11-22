@@ -15,21 +15,21 @@ export const PostTagsAndDate: React.FC<PostTagsAndDateProps> = ({
 }) => {
   const tagsLinks = tags.map((tag, index) => {
     return (
-      <>
+      <li key={index}>
         <Link href={`/blog/posts/${tag}`} key={index}>
           <a className="text-orange-aloy">{tag}</a>
         </Link>
         {index !== tags.length - 1 && ','}
-      </>
+      </li>
     )
   })
   return (
     (date || tags) && (
       <div className="flex flex-col justify-between w-full max-w-3xl space-y-4 md:flex-row xl:max-w-4xl md:space-y-0 md:space-x-8">
-        {!isEmpty(tags) && (
+        {!isEmpty(tagsLinks) && (
           <div className="flex space-x-2">
             <span className="font-semibold font-heading">Tags:</span>
-            <span className="flex space-x-2">{tagsLinks}</span>
+            <ul className="flex space-x-2">{tagsLinks}</ul>
           </div>
         )}
         {!isEmpty(date) && (
