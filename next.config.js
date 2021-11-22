@@ -3,7 +3,7 @@ const withPlugins = require(`next-compose-plugins`)
 
 const nextConfig = {
   reactStrictMode: true,
-  experimental: {esmExternals: true},
+  experimental: {esmExternals: false},
   images: {
     domains: ['images.unsplash.com'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1440],
