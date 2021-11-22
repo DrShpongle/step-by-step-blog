@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import {PostTagsAndDate, PostExcerpt} from 'components/blog'
+import {PostTagsAndDate} from 'components/blog'
 import {Post} from 'types/blog/'
 
 type PostCardProps = {

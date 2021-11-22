@@ -8,8 +8,8 @@ export type PostMeta = {
   excerpt: string
   // TODO:
   // wtf??
-  date: any
-  tags: string[]
+  date: JSX.Element
+  tags: JSX.Element[]
   postImage: PostImageSource
 }
 

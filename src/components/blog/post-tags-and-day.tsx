@@ -2,10 +2,10 @@ import * as React from 'react'
 import {isEmpty} from 'lodash'
 
 type PostTagsAndDateProps = {
-  tags: string[]
+  tags: JSX.Element[]
   // TODO:
   // wtf??
-  date: any
+  date: JSX.Element
 }
 
 export const PostTagsAndDate: React.FC<PostTagsAndDateProps> = ({
