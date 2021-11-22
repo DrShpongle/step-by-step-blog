@@ -11,7 +11,7 @@ export const PostImage: React.FC<PostImageProps> = ({source}) => {
   const {url, description} = source
   return url ? (
     <div className="flex flex-col items-center w-full space-y-4">
-      <div className="relative overflow-hidden h-56 sm:h-72 md:h-96 lg:h-[28rem] xl:h-[36rem] rounded-xl w-full">
+      <div className="relative overflow-hidden h-56 sm:h-96 lg:h-[28rem] xl:h-[36rem] rounded-xl w-full">
         <Image src={url} layout="fill" objectFit="cover" />
       </div>
       {description && (

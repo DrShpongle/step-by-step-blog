@@ -12,8 +12,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="container space-y-6">
-        <h1>Kamnev, privet!</h1>
-        {/* <h2>
+        <h2>
           Cumque eius veniam necessitatibus magni dicta odio nam iusto provident
           consequatur!
         </h2>
@@ -32,7 +31,7 @@ const Home: NextPage = () => {
         <h6>
           Harum dolorem adipisci neque dolores et autem pariatur inventore,
           exercitationem ullam!
-        </h6> */}
+        </h6>
       </div>
     </PageLayout>
   )

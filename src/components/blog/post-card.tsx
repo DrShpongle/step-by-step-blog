@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import {PostTagsAndDate} from 'components/blog'
+import {isEmpty} from 'lodash'
 import {Post} from 'types/blog/'
 
 type PostCardProps = {
@@ -10,7 +10,7 @@ type PostCardProps = {
 
 export const PostCard: React.FC<PostCardProps> = ({post}) => {
   const {meta, slug} = post
-  const {title, excerpt, date, tags, postImage} = meta
+  const {title, excerpt, date, postImage} = meta
   return (
     <div className="flex flex-col py-4 pl-4 pr-10 space-x-10 md:flex-row rounded-xl bg-viridian-blue-dark">
       {postImage?.url && (
@@ -38,7 +38,14 @@ export const PostCard: React.FC<PostCardProps> = ({post}) => {
             <div className="text-champagne line-clamp-3">{excerpt}</div>
           </div>
         )}
-        <PostTagsAndDate tags={tags} date={date} />
+        {!isEmpty(date) && (
+          <div className="flex items-center space-x-2">
+            <span className="font-semibold text-viridian-blue font-heading">
+              date:
+            </span>
+            <span className="text-viridian-blue-light">{date}</span>
+          </div>
+        )}
       </div>
     </div>
   )

@@ -3,20 +3,25 @@ import Link from 'next/link'
 import {isEmpty} from 'lodash'
 
 type PostTagsAndDateProps = {
-  tags: JSX.Element[]
+  tags?: JSX.Element[]
   // TODO:
   // wtf??
-  date: JSX.Element
+  date?: JSX.Element
 }
 
 export const PostTagsAndDate: React.FC<PostTagsAndDateProps> = ({
-  tags,
+  tags = [],
   date,
 }) => {
   const tagsLinks = tags.map((tag, index) => {
-    ;<Link href={`/blog/posts/${tag}`}>
-      <a>{tag}</a>
-    </Link>
+    return (
+      <>
+        <Link href={`/blog/posts/${tag}`} key={index}>
+          <a className="text-orange-aloy">{tag}</a>
+        </Link>
+        {index !== tags.length - 1 && ','}
+      </>
+    )
   })
   return (
     (date || tags) && (
@@ -24,13 +29,13 @@ export const PostTagsAndDate: React.FC<PostTagsAndDateProps> = ({
         {!isEmpty(tags) && (
           <div className="flex space-x-2">
             <span className="font-semibold font-heading">Tags:</span>
-            <span className="flex">{tags.join(', ')}</span>
+            <span className="flex space-x-2">{tagsLinks}</span>
           </div>
         )}
         {!isEmpty(date) && (
           <div className="flex items-center space-x-2">
             <span className="font-semibold font-heading">date:</span>
-            <span className="text-champagne">{date}</span>
+            <span className="text-viridian-blue">{date}</span>
           </div>
         )}
       </div>

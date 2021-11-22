@@ -29,8 +29,8 @@ const Header = () => {
                       className={classNames(
                         'hover:text-orange-aloy duration-100',
                         router.pathname === item.path
-                          ? 'text-orange-aloy border-b border-orange-aloy'
-                          : '',
+                          ? ' text-orange-aloy border-b border-orange-aloy'
+                          : 'text-viridian-blue-dark',
                       )}
                     >
                       {item.title}

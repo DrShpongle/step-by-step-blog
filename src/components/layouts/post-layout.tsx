@@ -20,7 +20,7 @@ const PostLayout: React.FC<pageProps> = ({meta, children}) => {
       <main className="flex-grow py-12 md:py-16 lg:py-20 xl:py-24">
         <div className="container">
           <div className="flex flex-col items-center">
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center w-full">
               {title && (
                 <h2 className="mx-auto text-center lg:max-w-3xl">{title}</h2>
               )}
