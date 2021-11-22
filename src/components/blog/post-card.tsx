@@ -12,9 +12,9 @@ export const PostCard: React.FC<PostCardProps> = ({post}) => {
   const {meta, slug} = post
   const {title, excerpt, date, postImage} = meta
   return (
-    <div className="flex flex-col py-4 pl-4 pr-4 space-y-4 md:pr-10 md:space-y-0 md:space-x-10 md:flex-row rounded-xl bg-viridian-blue-dark">
+    <div className="flex flex-col py-4 pl-4 pr-4 space-y-4 lg:pr-10 md:space-y-0 md:space-x-6 lg:space-x-10 md:flex-row rounded-xl bg-viridian-blue-dark">
       {postImage?.url && (
-        <div className="relative flex-shrink-0 w-full h-48 overflow-hidden md:w-64 rounded-xl">
+        <div className="relative flex-shrink-0 w-full overflow-hidden h-52 md:w-72 rounded-xl">
           <Link href={`/blog/posts/${slug}`}>
             <a className="text-inherit">
               <Image
