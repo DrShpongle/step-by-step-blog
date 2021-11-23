@@ -1,5 +1,3 @@
-import {MDXRemoteSerializeResult} from 'next-mdx-remote'
-
 export type PostImageSource = {
   url: string
   description: string

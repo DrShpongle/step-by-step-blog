@@ -15,7 +15,7 @@ export const getStaticProps = async ({params}) => {
   // needed fields: ['source', 'frontMatter']
   const post = getSourceBySlug(params.slug, ['slug', 'source', 'frontMatter'])
   const {source, frontMatter} = post
-  const mdxSource = await serialize(source, {
+  const mdxSource = await serialize(source as string, {
     scope: frontMatter,
     mdxOptions: {rehypePlugins: [rehypeAccessibleEmojis]},
   })
