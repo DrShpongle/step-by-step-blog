@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import {getAllPosts} from 'utils/posts'
+import {getAllSources} from 'utils/posts'
 import PageLayout from 'components/layouts/page-layout'
 import {PostCard} from 'components/blog/'
 import {Post} from 'types/blog/'
@@ -10,7 +10,6 @@ type BlogPageProps = {
 }
 
 const Blog: React.FC<BlogPageProps> = ({posts}) => {
-  console.log('posts:', posts)
   return (
     <PageLayout>
       <Head>
@@ -33,7 +32,7 @@ const Blog: React.FC<BlogPageProps> = ({posts}) => {
 export default Blog
 
 export function getStaticProps() {
-  const posts = getAllPosts(['slug', 'source', 'frontMatter'])
+  const posts = getAllSources(['slug', 'frontMatter'])
   return {
     props: {
       posts,

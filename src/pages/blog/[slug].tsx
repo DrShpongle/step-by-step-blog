@@ -1,53 +1,35 @@
-import {getAllPosts, getSourceBySlug} from 'utils/posts'
+import {getAllSources, getSourceBySlug} from 'utils/posts'
 import PostLayout from 'components/layouts/post-layout'
 import {serialize} from 'next-mdx-remote/serialize'
+import {MDXRemote, MDXRemoteSerializeResult} from 'next-mdx-remote'
 import {rehypeAccessibleEmojis} from 'rehype-accessible-emojis'
 
 export default ({post}) => {
   return <PostLayout {...post} />
 }
 
-// export function getStaticProps({params}) {
-// const post = getPostBySlug(params.slug, [
-//   'title',
-//   'excerpt',
-//   'date',
-//   'slug',
-//   'content',
-//   'postImage',
-//   'tags',
-//   'mdxSource',
-// ])
-
-//   return {
-//     props: {post},
-//   }
-// }
-
 export async function getStaticProps({params}) {
-  // console.log('params:::::', params)
-  // const post = getPostBySlug(params.slug, ['source', 'frontMatter', 'slug'])
-
-  const {content, data} = getSourceBySlug(params.slug)
-  const mdxSource = await serialize(content, {
-    scope: data,
+  const post = getSourceBySlug(params.slug, ['source', 'frontMatter'])
+  const {source, frontMatter} = post
+  const mdxSource = await serialize(source, {
+    scope: frontMatter,
     mdxOptions: {rehypePlugins: [rehypeAccessibleEmojis]},
   })
+  const serializedPost = {
+    ...post,
+    source: mdxSource,
+  }
   return {
-    props: {post: {source: mdxSource, frontMatter: data, slug: params.slug}},
+    props: {post: serializedPost},
   }
 }
 
 export const getStaticPaths = () => {
-  const posts = getAllPosts(['slug'])
-  // console.log('posts:', posts)
-
+  const posts = getAllSources(['slug'])
   return {
-    paths: posts.map((slug) => {
+    paths: posts.map((post) => {
       return {
-        // TODO
-        // wtf?
-        params: {...slug},
+        params: {slug: post.slug},
       }
     }),
     fallback: false,

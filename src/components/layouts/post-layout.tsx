@@ -1,15 +1,7 @@
 import * as React from 'react'
-import {getPostBySlug, getAllPosts} from 'utils/posts'
 import {useRouter} from 'next/router'
-import ReactMarkdown from 'react-markdown'
-import {MDXRemote} from 'next-mdx-remote'
-import {serialize} from 'next-mdx-remote/serialize'
 import {MdxComponent} from 'components/mdx'
-// import {tratata} from 'utils/posts'
-// import {MDXProvider} from '@mdx-js/react'
-// import ddd from '../../posts/post-03.mdx'
-import {rehypeAccessibleEmojis} from 'rehype-accessible-emojis'
-import matter from 'gray-matter'
+import {MDXRemote} from 'next-mdx-remote'
 
 import Header from 'components/app/header'
 import Footer from 'components/app/footer'
@@ -25,15 +17,9 @@ const components = {
 //   children: React.ReactNode
 // }
 
-const PostLayout: React.FC<any> = ({slug, source, frontMatter}) => {
-  console.log('slug:', slug)
-  console.log('source:', source)
-  console.log('frontMatter:', frontMatter)
-
+const PostLayout: React.FC<any> = ({source, frontMatter}) => {
   const router = useRouter()
-  // const {slug, content, data} = post
   const {title, excerpt, date, tags, postImage} = frontMatter
-  // console.log('post:', post)
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -61,10 +47,6 @@ const PostLayout: React.FC<any> = ({slug, source, frontMatter}) => {
               )}
             </div>
             <div className="max-w-3xl mx-auto mt-10 prose md:prose-xl dark:prose-dark xl:max-w-4xl md:mt-14 lg:mt-16 xl:mt-20">
-              {/* <ReactMarkdown
-                rehypePlugins={[rehypeAccessibleEmojis]}
-                children={content}
-              /> */}
               <MDXRemote {...source} components={components} />
             </div>
             <button
@@ -85,47 +67,3 @@ const PostLayout: React.FC<any> = ({slug, source, frontMatter}) => {
 }
 
 export default PostLayout
-
-// export async function getStaticProps() {
-//   // MDX text - can be from a local file, database, anywhere
-//   const source = 'Some **mdx** text, with a component <Test />'
-//   const mdxSource = await serialize(source)
-//   return {props: {source: mdxSource}}
-// }
-
-// export async function getStaticProps({params}) {
-//   // const post = getPostBySlug(params.slug, [
-//   //   'title',
-//   //   'excerpt',
-//   //   'date',
-//   //   'slug',
-//   //   'content',
-//   //   'postImage',
-//   //   'tags',
-//   // ])
-
-//   const source = getPostBySlug(params.slug, [
-//     'title',
-//     'excerpt',
-//     'date',
-//     'slug',
-//     'content',
-//     'postImage',
-//     'tags',
-//   ]).content
-//   const mdxSource = await serialize(source)
-
-//   return {
-//     props: {source: mdxSource},
-//   }
-// }
-
-// export async function getStaticProps() {
-//   // MDX text - can be from a local file, database, anywhere
-//   // const source =
-//   //   'Some **mdx** text, with a component <MdxComponent>1233</MdxComponent>'
-//   // const mdxSource = await serialize(source)
-//   // const ddd = tratata()
-//   console.log('ddd')
-//   return {props: {source: ddd}}
-// }
