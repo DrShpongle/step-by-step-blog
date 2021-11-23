@@ -1,11 +1,12 @@
 import Head from 'next/head'
-import {fetchPostSlugs} from 'utils/fetchPostSlugs'
+import {getAllPosts} from 'utils/posts'
 import PageLayout from 'components/layouts/page-layout'
 import {PostCard} from 'components/blog/'
 import {Post} from 'types/blog/'
 
 type BlogPageProps = {
-  posts: Post[]
+  // posts: Post[]
+  posts: any
 }
 
 const Blog: React.FC<BlogPageProps> = ({posts}) => {
@@ -19,7 +20,7 @@ const Blog: React.FC<BlogPageProps> = ({posts}) => {
       <div className="container">
         <h2>Posts:</h2>
         <ul className="mt-8 space-y-6">
-          {posts.map((post) => {
+          {posts.map((post: any) => {
             return <PostCard post={post} key={post.slug} />
           })}
         </ul>
@@ -31,27 +32,34 @@ const Blog: React.FC<BlogPageProps> = ({posts}) => {
 export default Blog
 
 export async function getStaticProps() {
-  const defaultMetaFields = {
-    title: '',
-    excerpt: '',
-    date: '',
-    tags: [],
-    postImage: {
-      url: '',
-      description: '',
-    },
-  }
-  const slugs = await fetchPostSlugs()
-  const posts = slugs.map((slug) => {
-    const meta = require(`./posts/${slug}/index.mdx`).meta
-    return {
-      slug,
-      meta: {
-        ...defaultMetaFields,
-        ...meta,
-      },
-    }
-  })
+  const posts = await getAllPosts(['slug', 'data', 'content'])
+  // const defaultMetaFields = {
+  //   title: '',
+  //   excerpt: '',
+  //   date: '',
+  //   tags: [],
+  //   postImage: {
+  //     url: '',
+  //     description: '',
+  //   },
+  // }
+  // const slugs = await fetchPostSlugs()
+  // const posts = slugs.map((slug) => {
+  //   // const meta = require(`./posts/${slug}/index.mdx`).meta
+  //   const meta = join(process.cwd(), 'src/posts').meta
+  //   return {
+  //     slug,
+  //     meta: {
+  //       ...defaultMetaFields,
+  //       ...meta,
+  //     },
+  //   }
+  // })
+  // return {
+  //   props: {
+  //     posts,
+  //   },
+  // }
   return {
     props: {
       posts,
