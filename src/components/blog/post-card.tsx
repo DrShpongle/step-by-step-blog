@@ -5,8 +5,7 @@ import {isEmpty} from 'lodash'
 import {Post} from 'types/blog/'
 
 type PostCardProps = {
-  // post: Post
-  post: any
+  post: Post
 }
 
 export const PostCard: React.FC<PostCardProps> = ({post}) => {

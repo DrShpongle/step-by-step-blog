@@ -34,10 +34,11 @@ export function getSourceBySlug(
 
 export function getAllSources(fields: string[] = []) {
   const slugs = getPostSlugs()
-  const posts = slugs.map((slug) => getSourceBySlug(slug, fields))
-  // .sort(
-  //   ({data: {date: d1}}, {data: {date: d2}}) =>
-  //     new Date(d2).getTime() - new Date(d1).getTime(),
-  // )
+  const posts = slugs
+    .map((slug) => getSourceBySlug(slug, fields))
+    .sort(
+      ({frontMatter: {date: d1}}, {frontMatter: {date: d2}}) =>
+        new Date(d2).getTime() - new Date(d1).getTime(),
+    )
   return posts
 }

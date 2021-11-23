@@ -1,23 +1,23 @@
 import * as React from 'react'
 import {useRouter} from 'next/router'
 import {MdxComponent} from 'components/mdx'
-import {MDXRemote} from 'next-mdx-remote'
+import {MDXRemote, MDXRemoteSerializeResult} from 'next-mdx-remote'
 
 import Header from 'components/app/header'
 import Footer from 'components/app/footer'
 import {PostImage, PostExcerpt, PostTagsAndDate} from 'components/blog/'
-import {PostMeta} from 'types/blog/'
+import {FrontMatter} from 'types/blog/'
 
 const components = {
   MdxComponent,
 }
 
-// type pageProps = {
-//   meta: PostMeta
-//   children: React.ReactNode
-// }
+type PostLayoutProps = {
+  source: MDXRemoteSerializeResult
+  frontMatter: FrontMatter
+}
 
-const PostLayout: React.FC<any> = ({source, frontMatter}) => {
+const PostLayout: React.FC<PostLayoutProps> = ({source, frontMatter}) => {
   const router = useRouter()
   const {title, excerpt, date, tags, postImage} = frontMatter
   return (

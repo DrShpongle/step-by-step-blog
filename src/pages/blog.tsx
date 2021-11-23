@@ -5,8 +5,8 @@ import {PostCard} from 'components/blog/'
 import {Post} from 'types/blog/'
 
 type BlogPageProps = {
-  // posts: Post[]
-  posts: any
+  posts: Post[]
+  // posts: any
 }
 
 const Blog: React.FC<BlogPageProps> = ({posts}) => {
@@ -32,7 +32,9 @@ const Blog: React.FC<BlogPageProps> = ({posts}) => {
 export default Blog
 
 export function getStaticProps() {
-  const posts = getAllSources(['slug', 'frontMatter'])
+  // TODO
+  // needed fields: ['slug', 'frontMatter']
+  const posts = getAllSources(['slug', 'frontMatter', 'source'])
   return {
     props: {
       posts,

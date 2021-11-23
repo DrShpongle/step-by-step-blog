@@ -1,19 +1,20 @@
+import {MDXRemoteSerializeResult} from 'next-mdx-remote'
+
 export type PostImageSource = {
   url: string
   description: string
 }
 
-export type PostMeta = {
+export type FrontMatter = {
   title: string
   excerpt: string
-  // TODO:
-  // wtf??
   date: JSX.Element
   tags: JSX.Element[]
   postImage: PostImageSource
 }
 
 export type Post = {
-  meta: PostMeta
+  frontMatter: FrontMatter
   slug: string
+  source: string
 }
