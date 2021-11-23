@@ -25,12 +25,14 @@ const components = {
 //   children: React.ReactNode
 // }
 
-const PostLayout: React.FC<any> = (props) => {
-  console.log('props:', props)
+const PostLayout: React.FC<any> = ({slug, source, frontMatter}) => {
+  console.log('slug:', slug)
+  console.log('source:', source)
+  console.log('frontMatter:', frontMatter)
 
   const router = useRouter()
   // const {slug, content, data} = post
-  // const {title, excerpt, date, tags, postImage} = data
+  const {title, excerpt, date, tags, postImage} = frontMatter
   // console.log('post:', post)
   return (
     <div className="flex flex-col min-h-screen">
@@ -38,7 +40,7 @@ const PostLayout: React.FC<any> = (props) => {
       <main className="flex-grow py-12 md:py-16 lg:py-20 xl:py-24">
         <div className="container">
           <div className="flex flex-col items-center">
-            {/* <div className="flex flex-col items-center w-full">
+            <div className="flex flex-col items-center w-full">
               {title && (
                 <h2 className="mx-auto text-center lg:max-w-3xl">{title}</h2>
               )}
@@ -57,13 +59,13 @@ const PostLayout: React.FC<any> = (props) => {
                   <PostExcerpt text={excerpt} />
                 </div>
               )}
-            </div> */}
+            </div>
             <div className="max-w-3xl mx-auto mt-10 prose md:prose-xl dark:prose-dark xl:max-w-4xl md:mt-14 lg:mt-16 xl:mt-20">
               {/* <ReactMarkdown
                 rehypePlugins={[rehypeAccessibleEmojis]}
                 children={content}
               /> */}
-              <MDXRemote {...props.source} components={components} />
+              <MDXRemote {...source} components={components} />
             </div>
             <button
               className="px-6 py-3 mt-12 duration-100 md:mt-16 lg:mt-20 xl:mt-24 bg-viridian-blue-light rounded-xl hover:bg-viridian-blue hover:cursor-pointer"

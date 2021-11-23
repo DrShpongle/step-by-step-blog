@@ -1,10 +1,10 @@
-import {getPostBySlug, getAllPosts, getMatterSource} from 'utils/posts'
+import {getAllPosts, getSourceBySlug} from 'utils/posts'
 import PostLayout from 'components/layouts/post-layout'
-import matter from 'gray-matter'
 import {serialize} from 'next-mdx-remote/serialize'
+import {rehypeAccessibleEmojis} from 'rehype-accessible-emojis'
 
-export default (props) => {
-  return <PostLayout post={props.post} source={props.source} />
+export default ({post}) => {
+  return <PostLayout {...post} />
 }
 
 // export function getStaticProps({params}) {
@@ -25,45 +25,29 @@ export default (props) => {
 // }
 
 export async function getStaticProps({params}) {
-  const post = getPostBySlug(params.slug, [
-    'title',
-    'excerpt',
-    'date',
-    'slug',
-    'content',
-    'postImage',
-    'tags',
-    'mdxSource',
-  ])
-  // MDX text - can be from a local file, database, anywhere
-  //   const source = `---
-  // title: Test
-  // ---
+  // console.log('params:::::', params)
+  // const post = getPostBySlug(params.slug, ['source', 'frontMatter', 'slug'])
 
-  // Some **mdx** text, with a component <MdxComponent>ddddddd</MdxComponent>
-  //   `
-
-  const {content, data} = getMatterSource(params.slug, [
-    'title',
-    'excerpt',
-    'date',
-    'slug',
-    'content',
-    'postImage',
-    'tags',
-    'mdxSource',
-  ])
-  const mdxSource = await serialize(content, {scope: data})
-  return {props: {source: mdxSource, frontMatter: data, post}}
+  const {content, data} = getSourceBySlug(params.slug)
+  const mdxSource = await serialize(content, {
+    scope: data,
+    mdxOptions: {rehypePlugins: [rehypeAccessibleEmojis]},
+  })
+  return {
+    props: {post: {source: mdxSource, frontMatter: data, slug: params.slug}},
+  }
 }
 
 export const getStaticPaths = () => {
   const posts = getAllPosts(['slug'])
+  // console.log('posts:', posts)
 
   return {
-    paths: posts.map((post) => {
+    paths: posts.map((slug) => {
       return {
-        params: {...post},
+        // TODO
+        // wtf?
+        params: {...slug},
       }
     }),
     fallback: false,
