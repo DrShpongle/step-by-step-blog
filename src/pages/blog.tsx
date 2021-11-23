@@ -31,8 +31,8 @@ const Blog: React.FC<BlogPageProps> = ({posts}) => {
 
 export default Blog
 
-export async function getStaticProps() {
-  const posts = await getAllPosts(['slug', 'data', 'content'])
+export function getStaticProps() {
+  const posts = getAllPosts(['slug', 'data', 'content'])
   // const defaultMetaFields = {
   //   title: '',
   //   excerpt: '',

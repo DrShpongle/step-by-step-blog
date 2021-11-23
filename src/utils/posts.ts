@@ -1,6 +1,7 @@
 import fs from 'fs'
 import {join} from 'path'
 import matter from 'gray-matter'
+import {serialize} from 'next-mdx-remote/serialize'
 
 const POSTS_PATH = join(process.cwd(), 'src/posts')
 
@@ -8,8 +9,23 @@ export const getPostSlugs = () => {
   return fs.readdirSync(POSTS_PATH)
 }
 
-export const getPostBySlug = (slug: string, fields: string[] = []) => {
-  const fullPath = join(POSTS_PATH, slug)
+// export function serializeContent(content) {
+//   const serializedContent = serialize(content)
+//   return serializedContent
+// }
+
+export function getMatterSource(slug: string, fields: string[] = []) {
+  const realSlug = slug.replace(/\.mdx$/, '')
+  const fullPath = join(POSTS_PATH, `${realSlug}.mdx`)
+  const fileContents = fs.readFileSync(fullPath, 'utf8')
+  const {data, content} = matter(fileContents)
+
+  return {data, content}
+}
+
+export function getPostBySlug(slug: string, fields: string[] = []) {
+  const realSlug = slug.replace(/\.mdx$/, '')
+  const fullPath = join(POSTS_PATH, `${realSlug}.mdx`)
   const fileContents = fs.readFileSync(fullPath, 'utf8')
   const {data, content} = matter(fileContents)
 
@@ -17,8 +33,12 @@ export const getPostBySlug = (slug: string, fields: string[] = []) => {
     .map((field) => {
       let value
       if (field === 'slug') {
-        value = slug.replace(/\.mdx$/, '')
+        value = realSlug
       } else if (field === 'content') {
+        // value = serialize(content)
+        value = content
+      } else if (field === 'mdxSource') {
+        // value = serialize(content)
         value = content
       }
       return value && {[field]: value}
