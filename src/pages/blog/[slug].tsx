@@ -6,11 +6,15 @@ import {MDXRemote, MDXRemoteSerializeResult} from 'next-mdx-remote'
 import {rehypeAccessibleEmojis} from 'rehype-accessible-emojis'
 import {Post} from 'types/blog/'
 
-export default ({post}) => {
+// TODO
+// fix type
+export default ({post}: any) => {
   return <PostLayout {...post} />
 }
 
-export const getStaticProps = async ({params}) => {
+// TODO
+// fix type
+export const getStaticProps = async ({params}: any) => {
   // TODO
   // needed fields: ['source', 'frontMatter']
   const post = getSourceBySlug(params.slug, ['slug', 'source', 'frontMatter'])
