@@ -10,7 +10,7 @@ export default ({post}) => {
   return <PostLayout {...post} />
 }
 
-export const getStaticProps = async ({params}) {
+export const getStaticProps = async ({params}) => {
   // TODO
   // needed fields: ['source', 'frontMatter']
   const post = getSourceBySlug(params.slug, ['slug', 'source', 'frontMatter'])
