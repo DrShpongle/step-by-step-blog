@@ -14,7 +14,7 @@ const navLinks = [
 const Header = () => {
   const router = useRouter()
   return (
-    <header className="py-4 bg-viridian-blue-light dark:bg-viridian-blue-dark">
+    <header className="py-4 transition-colors duration-500 bg-viridian-blue-light dark:bg-viridian-blue-dark">
       <div className="container">
         <div className="flex items-center justify-between">
           <Link href="/" passHref>
