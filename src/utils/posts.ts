@@ -1,6 +1,7 @@
 import fs from 'fs'
 import {join} from 'path'
 import matter from 'gray-matter'
+import {FrontMatter, Post} from 'types/blog'
 
 const POSTS_PATH = join(process.cwd(), 'src/posts')
 
@@ -11,25 +12,32 @@ export const getPostSlugs = () => {
 export function getSourceBySlug(
   slug: string,
   fields: string[] = ['slug', 'source', 'frontMatter'],
-) {
+): Post {
   const realSlug = slug.replace(/\.mdx$/, '')
   const fullPath = join(POSTS_PATH, `${realSlug}.mdx`)
   const fileContents = fs.readFileSync(fullPath, 'utf8')
   const {data, content} = matter(fileContents)
-  let value = {}
-  const post = fields
-    .map((field) => {
-      if (field === 'slug') {
-        value = realSlug
-      } else if (field === 'source') {
-        value = content
-      } else if (field === 'frontMatter') {
-        value = data
-      }
-      return value && {[field]: value}
-    })
-    .reduce((acc, cur) => ({...acc, ...cur}), {})
-  return post
+
+  return {
+    slug: realSlug,
+    source: content,
+    frontMatter: data as FrontMatter,
+  }
+
+  // const post = fields
+  //   .map((field) => {
+  //     let value = {}
+  //     if (field === 'slug') {
+  //       value = realSlug
+  //     } else if (field === 'source') {
+  //       value = content
+  //     } else if (field === 'frontMatter') {
+  //       value = data
+  //     }
+  //     return value && {[field]: value}
+  //   })
+  //   .reduce((acc, cur) => ({...acc, ...cur}), {})
+  // return post
 }
 
 export function getAllSources(fields: string[] = []) {

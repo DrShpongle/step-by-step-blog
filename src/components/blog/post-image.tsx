@@ -7,7 +7,6 @@ type PostImageProps = {
 }
 
 export const PostImage: React.FC<PostImageProps> = ({source}) => {
-  // How to destructure just inside destructure?
   const {url, description} = source
   return url ? (
     <div className="flex flex-col items-center w-full space-y-4">

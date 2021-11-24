@@ -6,8 +6,8 @@ export type PostImageSource = {
 export type FrontMatter = {
   title: string
   excerpt: string
-  date: JSX.Element
-  tags: JSX.Element[]
+  date: string
+  tags: string[]
   postImage: PostImageSource
 }
 

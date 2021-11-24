@@ -6,7 +6,6 @@ import {Post} from 'types/blog/'
 
 type BlogPageProps = {
   posts: Post[]
-  // posts: any
 }
 
 const Blog: React.FC<BlogPageProps> = ({posts}) => {

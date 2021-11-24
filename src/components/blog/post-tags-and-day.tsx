@@ -3,14 +3,14 @@ import Link from 'next/link'
 import {isEmpty} from 'lodash'
 
 type PostTagsAndDateProps = {
-  tags?: JSX.Element[]
+  tags: string[]
   // TODO:
   // wtf??
-  date?: JSX.Element
+  date: any
 }
 
 export const PostTagsAndDate: React.FC<PostTagsAndDateProps> = ({
-  tags = [],
+  tags,
   date,
 }) => {
   const tagsLinks = tags.map((tag, index) => {

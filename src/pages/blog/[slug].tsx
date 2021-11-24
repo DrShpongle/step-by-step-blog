@@ -1,19 +1,18 @@
 import {getAllSources, getSourceBySlug} from 'utils/posts'
-import {GetStaticPaths, GetStaticProps} from 'next'
 import PostLayout from 'components/layouts/post-layout'
 import {serialize} from 'next-mdx-remote/serialize'
-import {MDXRemote, MDXRemoteSerializeResult} from 'next-mdx-remote'
+import {MDXRemoteSerializeResult} from 'next-mdx-remote'
 import {rehypeAccessibleEmojis} from 'rehype-accessible-emojis'
 import {Post} from 'types/blog/'
 
-// TODO
-// fix type
-export default ({post}: any) => {
+type SlugPageProps = {
+  post: Pick<Post, 'slug' | 'frontMatter'> & {source: MDXRemoteSerializeResult}
+}
+
+export default ({post}: SlugPageProps) => {
   return <PostLayout {...post} />
 }
 
-// TODO
-// fix type
 export const getStaticProps = async ({params}: any) => {
   // TODO
   // needed fields: ['source', 'frontMatter']
