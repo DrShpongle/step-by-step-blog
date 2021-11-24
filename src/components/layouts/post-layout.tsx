@@ -24,7 +24,7 @@ const PostLayout: React.FC<PostLayoutProps> = ({source, frontMatter}) => {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow py-12 md:py-16 lg:py-20 xl:py-24">
-        <div className="container">
+        <div className="container max-w-4xl">
           <div className="flex flex-col items-center">
             <div className="flex flex-col items-center w-full">
               {title && (
