@@ -1,14 +1,14 @@
 export type PostImageSource = {
   url: string
-  description: string
+  description?: string
 }
 
 export type FrontMatter = {
   title: string
-  excerpt: string
   date: string
-  tags: string[]
-  postImage: PostImageSource
+  tags?: string[]
+  excerpt?: string
+  postImage?: PostImageSource
 }
 
 export type Post = {

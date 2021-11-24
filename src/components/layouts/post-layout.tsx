@@ -19,7 +19,7 @@ type PostLayoutProps = {
 
 const PostLayout: React.FC<PostLayoutProps> = ({source, frontMatter}) => {
   const router = useRouter()
-  const {title, excerpt, date, tags, postImage} = frontMatter
+  const {title, excerpt, date, tags = [], postImage} = frontMatter
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
