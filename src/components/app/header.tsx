@@ -19,7 +19,7 @@ const Header = () => {
         <div className="flex items-center justify-between">
           <Link href="/" passHref>
             <a className="relative block w-12 h-12">
-              <Image src="/logo.svg" layout="fill" />
+              <Image src="/logo.svg" layout="fill" alt="logo" />
             </a>
           </Link>
           <div className="flex items-center space-x-8">

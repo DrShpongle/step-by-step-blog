@@ -18,6 +18,7 @@ export const PostCard: React.FC<PostCardProps> = ({post}) => {
           <Link href={`/blog/${slug}`}>
             <a className="relative block w-full h-full text-inherit">
               <Image
+                alt="some picture"
                 src={postImage.url}
                 layout="fill"
                 quality={75}
