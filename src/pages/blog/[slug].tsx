@@ -1,15 +1,15 @@
-import {getAllSources, getSourceBySlug} from 'utils/posts'
+import {getAllPosts, getSourceBySlug} from 'utils/posts'
 import PostLayout from 'components/layouts/post-layout'
 import {serialize} from 'next-mdx-remote/serialize'
 import {MDXRemoteSerializeResult} from 'next-mdx-remote'
 import {rehypeAccessibleEmojis} from 'rehype-accessible-emojis'
 import {Post} from 'types/blog/'
 
-type SlugPageProps = {
+type PostPageProps = {
   post: Pick<Post, 'slug' | 'frontMatter'> & {source: MDXRemoteSerializeResult}
 }
 
-export const PostPage: React.FC<SlugPageProps> = ({post}) => {
+export const PostPage: React.FC<PostPageProps> = ({post}) => {
   return <PostLayout {...post} />
 }
 
@@ -22,7 +22,9 @@ export const getStaticProps = async ({params}: any) => {
   const {source, frontMatter} = post
   const mdxSource = await serialize(source as string, {
     scope: frontMatter,
-    mdxOptions: {rehypePlugins: [rehypeAccessibleEmojis]},
+    mdxOptions: {
+      rehypePlugins: [rehypeAccessibleEmojis],
+    },
   })
   const serializedPost = {
     ...post,
@@ -36,8 +38,8 @@ export const getStaticProps = async ({params}: any) => {
 export const getStaticPaths = () => {
   // TODO
   // needed fields: ['slug']
-  const posts = getAllSources(['slug', 'source', 'frontMatter'])
-  const paths = posts.map((post) => {
+  const allPosts = getAllPosts(['slug', 'source', 'frontMatter'])
+  const paths = allPosts.map((post) => {
     return {
       params: {slug: post.slug},
     }

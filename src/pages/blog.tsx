@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import {getAllSources} from 'utils/posts'
+import {getAllPosts} from 'utils/posts'
 import PageLayout from 'components/layouts/page-layout'
 import {PostCard} from 'components/blog/'
 import {Post} from 'types/blog/'
@@ -33,10 +33,10 @@ export default Blog
 export function getStaticProps() {
   // TODO
   // needed fields: ['slug', 'frontMatter']
-  const posts = getAllSources(['slug', 'frontMatter', 'source'])
+  const allPosts = getAllPosts(['slug', 'frontMatter', 'source'])
   return {
     props: {
-      posts,
+      posts: allPosts,
     },
   }
 }

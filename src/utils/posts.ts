@@ -5,15 +5,15 @@ import {FrontMatter, Post} from 'types/blog'
 
 const POSTS_PATH = join(process.cwd(), 'src/posts')
 
-export const getPostSlugs = () => {
+export const getAllPostPaths = () => {
   return fs.readdirSync(POSTS_PATH)
 }
 
 export function getSourceBySlug(
-  slug: string,
+  path: string,
   fields: string[] = ['slug', 'source', 'frontMatter'],
 ): Post {
-  const realSlug = slug.replace(/\.mdx$/, '')
+  const realSlug = path.replace(/\.mdx$/, '')
   const fullPath = join(POSTS_PATH, `${realSlug}.mdx`)
   const fileContents = fs.readFileSync(fullPath, 'utf8')
   const {data, content} = matter(fileContents)
@@ -40,13 +40,12 @@ export function getSourceBySlug(
   // return post
 }
 
-export function getAllSources(fields: string[] = []) {
-  const slugs = getPostSlugs()
-  const posts = slugs
-    .map((slug) => getSourceBySlug(slug, fields))
+export function getAllPosts(fields: string[] = []) {
+  const allPosts = getAllPostPaths()
+    .map((path) => getSourceBySlug(path, fields))
     .sort(
       ({frontMatter: {date: d1}}, {frontMatter: {date: d2}}) =>
         new Date(d2).getTime() - new Date(d1).getTime(),
     )
-  return posts
+  return allPosts
 }
