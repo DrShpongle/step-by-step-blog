@@ -9,9 +9,11 @@ type SlugPageProps = {
   post: Pick<Post, 'slug' | 'frontMatter'> & {source: MDXRemoteSerializeResult}
 }
 
-export default ({post}: SlugPageProps) => {
+export const PostPage: React.FC<SlugPageProps> = ({post}) => {
   return <PostLayout {...post} />
 }
+
+export default PostPage
 
 export const getStaticProps = async ({params}: any) => {
   // TODO
