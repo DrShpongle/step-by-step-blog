@@ -1,15 +1,18 @@
 import Link from 'next/link'
 import Head from 'next/head'
+import {isEmpty} from 'lodash'
 import {getAllPosts} from 'utils/posts'
 import PageLayout from 'components/layouts/page-layout'
 import {PostCard} from 'components/blog/'
 import {Post} from 'types/blog/'
+import blogConfig from 'config/blog.config'
 
 type BlogPageProps = {
   posts: Post[]
 }
 
 const Blog: React.FC<BlogPageProps> = ({posts}) => {
+  console.log('posts:', posts)
   return (
     <PageLayout>
       <Head>
@@ -18,20 +21,28 @@ const Blog: React.FC<BlogPageProps> = ({posts}) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="container">
-        <div className="text-center">
-          <div className="text-2xl">You can read some of my thoughts here:</div>
-        </div>
-        <h2 className="mt-16">Recent posts:</h2>
-        <ul className="mt-8 space-y-6">
-          {posts.map((post: any) => {
-            return <PostCard post={post} key={post.slug} />
-          })}
-        </ul>
-        <div className="flex justify-center mt-8">
-          <Link href="/blog/posts/1">
-            <a>View all posts</a>
-          </Link>
-        </div>
+        {!isEmpty(posts) ? (
+          <>
+            <div className="text-center">
+              <div className="text-2xl">
+                You can read some of my thoughts here:
+              </div>
+            </div>
+            <h2 className="mt-16">Recent posts:</h2>
+            <ul className="mt-8 space-y-6">
+              {posts.map((post: any) => {
+                return <PostCard post={post} key={post.slug} />
+              })}
+            </ul>
+            <div className="flex justify-center mt-8">
+              <Link href="/blog/posts/1">
+                <a>View all posts</a>
+              </Link>
+            </div>
+          </>
+        ) : (
+          <div className="text-center">There are no posts yet 🥲</div>
+        )}
       </div>
     </PageLayout>
   )
@@ -45,7 +56,7 @@ export function getStaticProps() {
   const allPosts = getAllPosts(['slug', 'frontMatter', 'source'])
   return {
     props: {
-      posts: allPosts.slice(1, 4),
+      posts: allPosts.slice(0, blogConfig.postsBlogPage),
     },
   }
 }

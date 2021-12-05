@@ -4,6 +4,7 @@ import {getAllPosts} from 'utils/posts'
 import PageLayout from 'components/layouts/page-layout'
 import {PostCard} from 'components/blog/'
 import {Post} from 'types/blog/'
+import blogConfig from 'config/blog.config'
 
 type PostPageProps = {
   posts: Post[]
@@ -52,10 +53,10 @@ export const getStaticProps = async ({params}: any) => {
   const {paginated} = params
   const paginationNumber = toNumber(paginated)
   const allPosts = getAllPosts(['slug', 'source', 'frontMatter'])
-  const perPage = 3
 
-  const startIndex = paginationNumber * perPage - perPage
-  const endIndex = paginationNumber * perPage - 1
+  const startIndex =
+    paginationNumber * blogConfig.postsPerPage - blogConfig.postsPerPage
+  const endIndex = paginationNumber * blogConfig.postsPerPage - 1
   const prevPosts = paginationNumber === 1 ? null : paginationNumber - 1
   const nextPosts =
     endIndex >= allPosts.length - 1 ? null : paginationNumber + 1
