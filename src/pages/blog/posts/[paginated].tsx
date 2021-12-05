@@ -58,8 +58,6 @@ export const getStaticProps = async ({params}: any) => {
   const prevPosts = paginationNumber === 1 ? null : paginationNumber - 1
   const nextPosts =
     endIndex >= allPosts.length - 1 ? null : paginationNumber + 1
-  console.log('endIndex:', endIndex)
-  console.log('allPosts.length:', allPosts.length)
 
   return {
     props: {
