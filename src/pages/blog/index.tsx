@@ -18,7 +18,10 @@ const Blog: React.FC<BlogPageProps> = ({posts}) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="container">
-        <h2>Recent posts:</h2>
+        <div className="text-center">
+          <div className="text-2xl">You can read some of my thoughts here:</div>
+        </div>
+        <h2 className="mt-16">Recent posts:</h2>
         <ul className="mt-8 space-y-6">
           {posts.map((post: any) => {
             return <PostCard post={post} key={post.slug} />

@@ -19,23 +19,24 @@ export const PostPage: React.FC<PostPageProps> = ({
   return (
     <PageLayout>
       <div className="container">
+        <h2>All posts:</h2>
         <ul className="mt-8 space-y-6">
           {posts.map((post: any) => {
             return <PostCard post={post} key={post.slug} />
           })}
         </ul>
-        <div>
+        <div className="flex justify-between mt-10">
           <div>
             {prevPosts !== null && (
               <Link href={'/blog/posts/' + prevPosts} passHref>
-                <a>« see newer posts</a>
+                <a>&#8592; newer posts</a>
               </Link>
             )}
           </div>
           <div>
             {nextPosts !== null && (
               <Link href={'/blog/posts/' + nextPosts} passHref>
-                <a>see older posts »</a>
+                <a>older posts &#8594;</a>
               </Link>
             )}
           </div>
