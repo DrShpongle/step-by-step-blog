@@ -1,3 +1,4 @@
+import * as React from 'react'
 import {useRouter} from 'next/router'
 import Link from 'next/link'
 import classNames from 'classnames'
@@ -12,7 +13,11 @@ const navLinks = [
 ]
 
 const Header = () => {
+  const [mounted, setMounted] = React.useState(false)
   const router = useRouter()
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
   return (
     <header className="py-4 transition-colors duration-500 bg-viridian-blue-light dark:bg-viridian-blue-dark">
       <div className="container">
@@ -43,7 +48,7 @@ const Header = () => {
                 )
               })}
             </ul>
-            <DarkModeToggler />
+            {mounted && <DarkModeToggler />}
           </div>
         </div>
       </div>
